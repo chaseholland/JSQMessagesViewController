@@ -224,7 +224,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     NSParameterAssert(self.senderDisplayName != nil);
 
     [super viewWillAppear:animated];
-    [self.view layoutIfNeeded];
     [self.collectionView.collectionViewLayout invalidateLayout];
 
     if (self.automaticallyScrollsToMostRecentMessage) {
@@ -247,6 +246,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
         [self.snapshotView removeFromSuperview];
     }
+}
+
+- (void) viewDidLayoutSubviews {
+	[self.view layoutIfNeeded];
+	[super viewDidLayoutSubviews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
